@@ -19,3 +19,13 @@
 .win {
   background: radial-gradient(rgb(154, 255, 145), rgb(23, 253, 3));
 }
+.win:hover {
+  background: radial-gradient(rgb(180, 255, 173), rgb(63, 255, 46));
+}
+
+@media (max-width: 767.98px) {
+  .Tile {
+    width: 60px;
+    height: 60px;
+  }
+}

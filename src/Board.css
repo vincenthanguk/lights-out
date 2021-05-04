@@ -19,20 +19,35 @@
 }
 
 .Board button {
-  margin-top: 100px;
+  margin-top: 50px;
   width: 100px;
   height: 40px;
   font-family: "Orbitron";
   font-size: 0.9rem;
   outline: none;
+  outline-offset: none;
   border-radius: 15px;
   background-color: rgb(0, 43, 11);
   color: rgb(255, 255, 255);
   box-shadow: 0px 0px 50px 10px rgba(223, 255, 219, 0.185);
 }
 
+.Board button:active {
+  outline: none;
+}
+
 .Board button:hover {
   cursor: pointer;
-  background-color: #49ff18;
+  background-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0px 0px 50px 20px rgba(223, 255, 219, 0.541);
+}
+
+@media (max-width: 767.98px) {
+  body {
+    font-size: 10px;
+  }
+
+  .Board button {
+    margin-top: 20px;
+  }
 }
