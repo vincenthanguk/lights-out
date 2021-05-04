@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Tile from "./Tile";
 import "./Board.css";
+import { ranBool, checkBooleans } from "./helper";
 
 class Board extends Component {
   static defaultProps = {
@@ -11,16 +12,38 @@ class Board extends Component {
     this.state = {
       board: {
         //   booleans for the activated/deactivated tiles
-        row1: [false, false, false, false, false],
-        row2: [false, false, false, false, false],
-        row3: [false, false, false, false, false],
-        row4: [false, false, false, false, false],
-        row5: [false, false, false, false, false],
+        row1: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row2: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row3: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row4: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row5: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
       },
+      // {
+      //   //   booleans for the activated/deactivated tiles
+      //   row1: [true, true, true, true, true],
+      //   row2: [true, true, true, true, true],
+      //   row3: [true, true, true, true, true],
+      //   row4: [true, true, true, true, true],
+      //   row5: [true, true, true, true, true],
+      // },
+      win: false,
     };
   }
 
+  isWin = ({ row1, row2, row3, row4, row5 }) => {
+    let checkWin =
+      checkBooleans(row1) &&
+      checkBooleans(row2) &&
+      checkBooleans(row3) &&
+      checkBooleans(row4) &&
+      checkBooleans(row5);
+    return checkWin;
+  };
+
   tileClick = (e) => {
+    //   guard clause: cannot click anywhere, when game state is 'win'
+    if (this.state.win === true) return;
+
     const row = "row" + e.target.dataset.row;
     const rowAbove = "row" + (e.target.dataset.row - 1);
     const rowBelow = "row" + (+e.target.dataset.row + 1);
@@ -29,6 +52,7 @@ class Board extends Component {
     let rowIndex;
 
     this.setState((st) => {
+      let isWin;
       // copy of board object
       const newBoard = { ...st.board };
 
@@ -68,17 +92,33 @@ class Board extends Component {
         });
       }
 
+      isWin = this.isWin(newBoard);
+
       //   setting new state
-      let newState = { board: newBoard };
+      let newState = { board: newBoard, win: isWin };
 
       return newState;
+    });
+  };
+
+  gameRestart = () => {
+    this.setState({
+      board: {
+        //   booleans for the activated/deactivated tiles
+        row1: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row2: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row3: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row4: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row5: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+      },
+      win: false,
     });
   };
 
   render() {
     return (
       <div className="Board">
-        <h1>Lights Out!</h1>
+        <h1>{!this.state.win ? "Lights Out!" : "YOU WIN!"}</h1>
         <table>
           <tbody>
             {/* tr should be set dynamically */}
@@ -87,7 +127,8 @@ class Board extends Component {
                 return (
                   <td key={`0/${i}`}>
                     <Tile
-                      value={n ? "on" : ""}
+                      value={n ? "" : "on"}
+                      win={this.state.win}
                       row={1}
                       column={i}
                       handleClick={this.tileClick}
@@ -101,7 +142,8 @@ class Board extends Component {
                 return (
                   <td key={`1/${i}`}>
                     <Tile
-                      value={n ? "on" : ""}
+                      value={n ? "" : "on"}
+                      win={this.state.win}
                       row={2}
                       column={i}
                       handleClick={this.tileClick}
@@ -115,7 +157,8 @@ class Board extends Component {
                 return (
                   <td key={`2/${i}`}>
                     <Tile
-                      value={n ? "on" : ""}
+                      value={n ? "" : "on"}
+                      win={this.state.win}
                       row={3}
                       column={i}
                       handleClick={this.tileClick}
@@ -129,7 +172,8 @@ class Board extends Component {
                 return (
                   <td key={`3/${i}`}>
                     <Tile
-                      value={n ? "on" : ""}
+                      value={n ? "" : "on"}
+                      win={this.state.win}
                       row={4}
                       column={i}
                       handleClick={this.tileClick}
@@ -143,7 +187,8 @@ class Board extends Component {
                 return (
                   <td key={`4/${i}`}>
                     <Tile
-                      value={n ? "on" : ""}
+                      value={n ? "" : "on"}
+                      win={this.state.win}
                       row={5}
                       column={i}
                       handleClick={this.tileClick}
@@ -154,6 +199,7 @@ class Board extends Component {
             </tr>
           </tbody>
         </table>
+        <button onClick={this.gameRestart}>RESTART!</button>
       </div>
     );
   }

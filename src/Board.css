@@ -1,10 +1,38 @@
 .Board {
+  margin-top: 80px;
+}
+
+.Board h1 {
+  font-size: 4em;
+  text-shadow: 0 0 5px #fff, 0 0 3px #fff, 0 0 15px #fff, 0 0 20px #49ff18,
+    0 0 30px #49ff18, 0 0 40px #49ff18, 0 0 55px #49ff18, 0 0 75px #49ff18;
 }
 
 .Board table {
-  border: 2px solid black;
+  border: 15px solid #abff96;
+  border-radius: 10px;
   background-color: black;
-  box-shadow: 0px 10px 23px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 400px 50px rgba(68, 255, 43, 0.5),
+    0px 0px 50px 10px rgba(223, 255, 219, 0.781);
   margin-left: auto;
   margin-right: auto;
+}
+
+.Board button {
+  margin-top: 100px;
+  width: 100px;
+  height: 40px;
+  font-family: "Orbitron";
+  font-size: 0.9rem;
+  outline: none;
+  border-radius: 15px;
+  background-color: rgb(0, 43, 11);
+  color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 50px 10px rgba(223, 255, 219, 0.185);
+}
+
+.Board button:hover {
+  cursor: pointer;
+  background-color: #49ff18;
+  box-shadow: 0px 0px 50px 20px rgba(223, 255, 219, 0.541);
 }
