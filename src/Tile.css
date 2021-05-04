@@ -1,0 +1,9 @@
+.Tile {
+  background-color: rgb(75, 75, 75);
+  width: 100px;
+  height: 100px;
+}
+
+.on {
+  background-color: yellow;
+}
