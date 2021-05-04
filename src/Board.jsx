@@ -10,6 +10,7 @@ class Board extends Component {
     super(props);
     this.state = {
       board: {
+        //   booleans for the activated/deactivated tiles
         row1: [false, false, false, false, false],
         row2: [false, false, false, false, false],
         row3: [false, false, false, false, false],
@@ -24,28 +25,50 @@ class Board extends Component {
     const rowAbove = "row" + (e.target.dataset.row - 1);
     const rowBelow = "row" + (+e.target.dataset.row + 1);
     const column = +e.target.dataset.column;
+    // click position
+    let rowIndex;
 
     this.setState((st) => {
+      // copy of board object
       const newBoard = { ...st.board };
 
+      //   copy of row that was clicked
       newBoard[row] = newBoard[row].map((tile, i) => {
+        //   map does not work for [i-1] (why?) -> workaround
         if (i === column - 1) {
           tile = !tile;
         }
         if (i === column) {
           tile = !tile;
-
           newBoard[row][i + 1] = !newBoard[row][i + 1];
 
-          //   if (newBoard[rowAbove])
-          console.log(newBoard[rowAbove][i]);
-          newBoard[rowAbove][i] = !newBoard[row][i];
-          //   if (newBoard[rowBelow])
-          newBoard[rowBelow][i] = !newBoard[rowBelow][i];
+          //   setting rowIndex to determine row below and above
+          rowIndex = i;
         }
         return tile;
       });
 
+      // changing row above (if it exists)
+      if (newBoard[rowAbove]) {
+        newBoard[rowAbove] = newBoard[rowAbove].map((tile, i) => {
+          if (i === rowIndex) {
+            tile = !tile;
+          }
+          return tile;
+        });
+      }
+
+      // changing row below (if it exists)
+      if (newBoard[rowBelow]) {
+        newBoard[rowBelow] = newBoard[rowBelow].map((tile, i) => {
+          if (i === rowIndex) {
+            tile = !tile;
+          }
+          return tile;
+        });
+      }
+
+      //   setting new state
       let newState = { board: newBoard };
 
       return newState;
@@ -55,9 +78,10 @@ class Board extends Component {
   render() {
     return (
       <div className="Board">
-        <h1>Board</h1>
+        <h1>Lights Out!</h1>
         <table>
           <tbody>
+            {/* tr should be set dynamically */}
             <tr>
               {this.state.board.row1.map((n, i) => {
                 return (

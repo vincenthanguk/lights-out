@@ -13,9 +13,7 @@ class Tile extends Component {
         onClick={this.handleClick}
         data-row={this.props.row}
         data-column={this.props.column}
-      >
-        {this.props.value}
-      </div>
+      ></div>
     );
   }
 }

@@ -1,0 +1,10 @@
+.Board {
+}
+
+.Board table {
+  border: 2px solid black;
+  background-color: black;
+  box-shadow: 0px 10px 23px 0px rgba(0, 0, 0, 0.3);
+  margin-left: auto;
+  margin-right: auto;
+}
