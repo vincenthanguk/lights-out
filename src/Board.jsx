@@ -11,21 +11,21 @@ class Board extends Component {
     super(props);
     this.state = {
       board: {
-        //     //   booleans for the activated/deactivated tiles
-        //     row1: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
-        //     row2: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
-        //     row3: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
-        //     row4: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
-        //     row5: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
-        //   },
-
         //   booleans for the activated/deactivated tiles
-        row1: [true, true, true, true, true],
-        row2: [true, true, true, true, true],
-        row3: [true, true, true, true, true],
-        row4: [true, true, true, true, true],
-        row5: [true, true, true, true, true],
+        row1: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row2: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row3: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row4: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
+        row5: [ranBool(), ranBool(), ranBool(), ranBool(), ranBool()],
       },
+
+      //     //   booleans for the activated/deactivated tiles
+      //     row1: [true, true, true, true, true],
+      //     row2: [true, true, true, true, true],
+      //     row3: [true, true, true, true, true],
+      //     row4: [true, true, true, true, true],
+      //     row5: [true, true, true, true, true],
+      //   },
       win: false,
     };
   }
