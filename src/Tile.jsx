@@ -9,7 +9,9 @@ class Tile extends Component {
   render() {
     return (
       <div
-        className={`Tile ${this.props.win ? "win" : this.props.value}`}
+        className={`Tile ${this.props.win ? "win" : this.props.value} ${
+          this.props.tileSize
+        }`}
         onClick={this.handleClick}
         data-row={this.props.row}
         data-column={this.props.column}
