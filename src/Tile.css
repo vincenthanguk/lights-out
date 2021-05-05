@@ -4,6 +4,11 @@
   height: 100px;
 }
 
+.small {
+  width: 70px;
+  height: 70px;
+}
+
 .Tile:hover {
   background: radial-gradient(rgb(145, 145, 145), rgb(107, 107, 107));
 }
